@@ -14,6 +14,8 @@ public:
     double getValueForArg(double a);
     Polynomial getDerivative(int order);
     Polynomial getIntegral();
+    vector<double> getRoots(double e, double a, double b);
+
 
     Polynomial operator=(Polynomial polynomial);
     friend Polynomial operator+(Polynomial pol1, Polynomial pol2);
