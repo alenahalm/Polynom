@@ -21,4 +21,10 @@ int main() {
     cout << pol1 / pol2 << endl;
     cout << "Pol1 * Pol2" << endl;
     cout << pol1 * pol2 << endl;
+    
+    vector<double> roots = pol1.getRoots(0.0001,0,1.5);
+    cout << "Roots:" << endl;
+    for (int i = 0; i < roots.size(); ++i) {
+        cout << roots[i] << endl;
+    }
 }
