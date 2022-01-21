@@ -177,3 +177,51 @@ Polynomial operator/(Polynomial pol1, Polynomial pol2) {
     }
     return Polynomial(pow, arr);
 }
+
+bool difSign(double a, double b) {
+    if (a * b < 0) {
+        return true;
+    }
+    return false;
+}
+
+vector<double> Polynomial::getRoots(double e, double a, double b) {
+    vector<double> roots;
+    if (power == 0) return roots;
+    if (power == 1) {
+        double x = -coefficients[1] / coefficients[0];
+        if (a <= x && x <= b) {
+            roots.push_back(x);
+        }
+    }
+    else if (power == 2) {
+        double D = coefficients[1] * coefficients[1] - 4 * coefficients[0] * coefficients[2];
+        double x = (-coefficients[1] + sqrt(D)) / (2 * coefficients[0]);
+        if (a <= x && x <= b) {
+            roots.push_back(x);
+        }
+        x = (-coefficients[1] - sqrt(D)) / (2 * coefficients[0]);
+        if (a <= x && x <= b) {
+            roots.push_back(x);
+        }
+    }
+    else {
+        double left = a, right = b;
+        double middle;
+        while ((right) - (left) > e) {
+            middle = (left + right) / 2;
+            if (difSign(getValueForArg(left), getValueForArg(middle))) {
+                right = middle;
+            }
+            else {
+                left = middle;
+            }
+            if (getValueForArg(middle) == 0) {
+                break;
+            }
+        }
+        roots.push_back(middle);
+
+    }
+    return roots;
+}
